@@ -1,6 +1,6 @@
 version: "3"
 services:
-  react-stories-production-client:
+  client:
     container_name: "react-stories-production-client"
     build:
       context: "./client"
@@ -15,10 +15,10 @@ services:
     ports:
       - "3000:80"
     depends_on:
-      - "react-stories-production-server"
+      - "server"
     networks:
       - "react-stories-production-network"
-  react-stories-production-server:
+  server:
     container_name: "react-stories-production-server"
     build:
       context: "./server"

@@ -1,7 +1,6 @@
 version: "3"
 services:
-  react-stories-development-client:
-    container_name: "react-stories-development-client"
+  client:
     build:
       context: "./client"
       dockerfile: "dev.Dockerfile"
@@ -15,11 +14,12 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - "react-stories-development-server"
+      - "server"
     networks:
       - "react-stories-development-network"
-  react-stories-development-server:
-    container_name: "react-stories-development-server"
+    volumes:
+      - "./client:/usr/src/app"
+  server:
     build:
       context: "./server"
       dockerfile: "dev.Dockerfile"
@@ -32,6 +32,9 @@ services:
       - "3001:3001"
     networks:
       - "react-stories-development-network"
+    volumes:
+      - ./server/src:/usr/src/app/src
+
 networks:
   react-stories-development-network:
     driver: "bridge"
