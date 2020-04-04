@@ -1,0 +1,37 @@
+version: "3"
+services:
+  react-stories-development-client:
+    container_name: "react-stories-development-client"
+    build:
+      context: "./client"
+      dockerfile: "dev.Dockerfile"
+    restart: "always"
+    environment:
+      NODE_ENV: "development"
+      REACT_APP_PORT: 3000
+      REACT_APP_HOST: "0.0.0.0"
+      REACT_APP_API_HOST: "0.0.0.0"
+      REACT_APP_API_PORT: 3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "react-stories-development-server"
+    networks:
+      - "react-stories-development-network"
+  react-stories-development-server:
+    container_name: "react-stories-development-server"
+    build:
+      context: "./server"
+      dockerfile: "dev.Dockerfile"
+    restart: "always"
+    environment:
+      NODE_ENV: "development"
+      NODE_PORT: 3001
+      NODE_HOST: "0.0.0.0"
+    ports:
+      - "3001:3001"
+    networks:
+      - "react-stories-development-network"
+networks:
+  react-stories-development-network:
+    driver: "bridge"
