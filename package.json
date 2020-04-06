@@ -1,7 +1,7 @@
 {
-  "name": "react-stories",
+  "name": "react-fabruc",
   "version": "0.1.0",
-  "description": "React app like instagram stories filter",
+  "description": "React app fabricJS implementation",
   "author": "Eduardo Brito <edu.santos.brito@gmail.com>",
   "license": "MIT"
 }

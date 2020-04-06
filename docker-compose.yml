@@ -14,22 +14,6 @@ services:
       REACT_APP_API_PORT: 3001
     ports:
       - "3000:80"
-    depends_on:
-      - "server"
-    networks:
-      - "react-stories-production-network"
-  server:
-    container_name: "react-stories-production-server"
-    build:
-      context: "./server"
-      dockerfile: "Dockerfile"
-    restart: "always"
-    environment:
-      NODE_ENV: "production"
-      NODE_PORT: 3001
-      NODE_HOST: "0.0.0.0"
-    ports:
-      - "3001:3001"
     networks:
       - "react-stories-production-network"
 networks:

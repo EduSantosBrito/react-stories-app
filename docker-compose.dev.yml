@@ -1,6 +1,7 @@
 version: "3"
 services:
   client:
+    stdin_open: true
     build:
       context: "./client"
       dockerfile: "dev.Dockerfile"
@@ -13,28 +14,10 @@ services:
       REACT_APP_API_PORT: 3001
     ports:
       - "3000:3000"
-    depends_on:
-      - "server"
     networks:
       - "react-stories-development-network"
     volumes:
       - "./client:/usr/src/app"
-  server:
-    build:
-      context: "./server"
-      dockerfile: "dev.Dockerfile"
-    restart: "always"
-    environment:
-      NODE_ENV: "development"
-      NODE_PORT: 3001
-      NODE_HOST: "0.0.0.0"
-    ports:
-      - "3001:3001"
-    networks:
-      - "react-stories-development-network"
-    volumes:
-      - ./server/src:/usr/src/app/src
-
 networks:
   react-stories-development-network:
     driver: "bridge"
